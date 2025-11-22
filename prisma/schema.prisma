@@ -10,6 +10,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 model User {
@@ -17,6 +18,10 @@ model User {
   email     String   @unique
   name      String?
   // posts     Post[]
+  age      Int?
+  inMarried Boolean  @default(false)
+  nation   String?
+  
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
