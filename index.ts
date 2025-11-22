@@ -8,12 +8,24 @@ const prisma = new PrismaClient();
 app.get("/", (req, res) => {
   res.send("Hello, World!");
 });
+app.get("/users", async (req: Request, res: Response) => {
+  const users = await prisma.user.findMany();
+  res.json(users);
+});
 
-app.get("/users", async (_, res) => {
-  const users = await prisma.user.findUnique({
-    where: { email: "galib@example.com" },
+app.put("/users", async (_, res) => {
+  const users = await prisma.user.update({
+    where: { email: "pedro@example.com" },
+    data: { age: 29 },
   });
   res.json(users);
+});
+
+app.delete("/user", async (_, res) => {
+  const deleteUser = await prisma.user.delete({
+    where: { email: "lucas@example.com" },
+  });
+  res.json(deleteUser);
 });
 
 app.listen(PORT, () => {
