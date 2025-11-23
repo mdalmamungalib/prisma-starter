@@ -22,8 +22,8 @@ app.put("/users", async (_, res) => {
 });
 
 app.delete("/user", async (_, res) => {
-  const deleteUser = await prisma.user.delete({
-    where: { email: "lucas@example.com" },
+  const deleteUser = await prisma.user.deleteMany({
+    where: { age: { gt: 30 }},
   });
   res.json(deleteUser);
 });

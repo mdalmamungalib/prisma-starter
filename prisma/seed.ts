@@ -75,6 +75,7 @@ async function seed() {
         nationality: "Paraguayan",
       },
     ],
+    skipDuplicates: true,
   });
 }
 
